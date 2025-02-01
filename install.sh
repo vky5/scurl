@@ -15,48 +15,46 @@ os_name=$(echo "/etc/os-release" | grep '^NAME=' | cut -d'=' -f2 | tr -d '"')
 # tr -d '"' I am just deleting the double quote so it wont show "Ubuntu" instead show ubuntu can use double quote if need be later 
 
 
-# please add name here if you want to
+# Define arrays for Debian-based and RHEL-based OS
+# Please add os if you ur os is of similar type
 debian=("ubuntu" "debian" "kali")
-rhel=("fedora" "centos")
+rhel=("fedora" "centos" "rhel")
 
 os=""
 
-## first checking for debian os
-for os in debian
+# Check for Debian-based OS
+for os_type in "${debian[@]}"
 do
-    tmp=$(grep "$os")
-
-    if [[ tmp ]]
-    then
-        echo "os detected"
+    if [[ "$os_name" == *"$os_type"* ]]; then
+        echo "Debian-based OS detected: $os_name"
         os="debian"
         break
     fi
 done
 
-
-## first checking for rhel os
-for os in rhel
+# Check for RHEL-based OS
+for os_type in "${rhel[@]}"
 do
-    tmp=$(grep "$os")
-
-    if [[ tmp ]]
-    then
-        echo "os detected"
+    if [[ "$os_name" == *"$os_type"* ]]; then
+        echo "RHEL-based OS detected: $os_name"
         os="rhel"
         break
     fi
 done
 
-
-if [[ $os == "" ]]
-then 
-    echo "not know os. Update install file manually"
+# If OS is not recognized, exit the script
+if [[ $os == "" ]]; then 
+    echo "Unknown OS. Please update the install script manually."
     exit 1
 fi
 
+# Run the appropriate installation script based on the detected OS
+if [[ $os == "debian" ]]; then
+    echo "Running Debian-based installation script..."
+    ./ins_deb.sh  # Run Debian-specific install script
+elif [[ $os == "rhel" ]]; then
+    echo "Running RHEL-based installation script..."
+    ./ins_rhel.sh  # Run RHEL-specific install script
+fi
 
-
-
-
-
+echo "Installation complete!"
