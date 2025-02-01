@@ -1,0 +1,14 @@
+[Unit]
+Description=Scurl
+After=curl.service
+
+[Service]
+User=scurl
+Group=scurl
+WorkingDirectory=/opt/scurl
+
+ExecStart=/opt/scurl/bin/startup.sh
+ExecStop=/opt/scurl/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
