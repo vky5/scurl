@@ -8,7 +8,7 @@
 Clone or download the repository containing the `install.sh` script, the `curl_engine.sh` script, and the `scurl.sh` script.
 
 ```bash
-git clone https://github.com/your-repository/scurl.git
+git clone https://github.com/vky5/scurl
 cd scurl
 ```
 
