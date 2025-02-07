@@ -56,4 +56,4 @@ This will launch the Scurl prompt, where you can enter the URL, request method, 
 
 Scurl will then generate and display the equivalent curl command.
 
-Press enter to execute that command
+Press enter to execute that command.
