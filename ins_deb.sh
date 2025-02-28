@@ -27,6 +27,7 @@ echo "<--------------- Setting Ownership --------------->"
 echo "Changing ownership of /opt/scurl and /var/log/scurl to user 'scurl'..."
 chown -R scurl:scurl /opt/scurl
 chown -R scurl:scurl /var/log/scurl
+chmod 644 /opt/scurl/scurl.pid
 echo "Ownership set successfully."
 
 # Setting up Systemd Service
@@ -41,6 +42,14 @@ echo "Systemd service file created successfully."
 # Set permissions on the systemd service file
 chmod 644 /etc/systemd/system/scurl.service
 echo "Permissions set for the systemd service file."
+
+
+# changing permissions of all files
+echo "<--------------- Changing permissions --------------->"
+echo "Changing file permissions..."
+cd /opt/scurl/bin
+pwd
+chmod +x curl_engine.sh scurl.sh shutdown.sh startup.sh uninstall.sh scurl_daemon.sh
 
 # Reloading systemd and Starting Service
 echo "<--------------- Reloading systemd and Starting Service --------------->"

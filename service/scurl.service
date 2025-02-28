@@ -1,14 +1,17 @@
 [Unit]
-Description=Scurl
-After=curl.service
+Description=Scurl Background Service
+After=network.target
 
 [Service]
 User=scurl
 Group=scurl
 WorkingDirectory=/opt/scurl
 
-ExecStart=/opt/scurl/bin/startup.sh
-ExecStop=/opt/scurl/bin/shutdown.sh
+ExecStart=/bin/bash /opt/scurl/bin/scurl_daemon.sh
+Restart=always
+Type=simple
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target

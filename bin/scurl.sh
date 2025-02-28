@@ -10,7 +10,7 @@ headers=()        # Initialize an empty array to store headers
 body=""           # Request body, if any, will be stored here
 
 # Source the curl_engine.sh file to access any pre-defined functions (like the curl command generator)
-source ./curl_engine
+source /opt/scurl/bin/curl_engine.sh
 
 # Infinite loop to allow multiple requests until the user decides to exit
 while true
